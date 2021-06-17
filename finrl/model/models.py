@@ -116,7 +116,6 @@ class DRLAgent:
             tensorboard_log=f"{config.TENSORBOARD_LOG_DIR}/{model_name}",
             verbose=verbose,
             policy_kwargs=policy_kwargs,
-            **model_kwargs,
         )
         return model
 
