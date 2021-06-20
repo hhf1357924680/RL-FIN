@@ -150,7 +150,7 @@ print(len(trade))
 train.head()
 trade.head()
 
-config.TECHNICAL_INDICATORS_LIST#与论文不同，此处有8个features
+config.TECHNICAL_INDICATORS_LIST#2018年的这篇文章有8个features
 '''
 'macd',
  'boll_ub'：布尔值上界；
@@ -165,6 +165,7 @@ config.TECHNICAL_INDICATORS_LIST#与论文不同，此处有8个features
 stock_dimension = len(train.tic.unique())#30支
 state_space = 1 + 2*stock_dimension + len(config.TECHNICAL_INDICATORS_LIST)*stock_dimension#1+30*2+30*8
 print(f"Stock Dimension: {stock_dimension}, State Space: {state_space}")
+#stock_dimension=30，state_space=301
 env_kwargs = {
     "hmax": 100, 
     "initial_amount":1000000, #Since in Indonesia the minimum number of shares per trx is 100, then we scaled the initial amount by dividing it with 100 
@@ -178,12 +179,14 @@ env_kwargs = {
     
 }
 env_train_gym = StockTradingEnv(df = train, **env_kwargs)
+
 env_train, _ = env_train_gym.get_sb_env()
 print(type(env_train))
 
 #使用DRL算法（validating 3 agents:A2C、PPO、DDPG）
 #A2C
 agent = DRLAgent(env = env_train)
+
 model_a2c = agent.get_model("a2c")
 trained_a2c = agent.train_model(model=model_a2c,
                                tb_log_name='a2c',
@@ -192,6 +195,7 @@ trained_a2c = agent.train_model(model=model_a2c,
 #DDPG
 agent = DRLAgent(env = env_train)
 model_ddpg = agent.get_model("ddpg")
+
 trained_ddpg = agent.train_model(model=model_ddpg,
                                tb_log_name='ddpg',
                                total_timesteps=50000)
@@ -237,7 +241,7 @@ trained_sac = agent.train_model(model=model_sac,
 
 #Trading
 #Assume that we have $1,000,000 initial capital at 2019-01-01. We use the DDPG model to trade Dow jones 30 stocks.
- #1.Set turbulence threshold(设置抗风险阈值)
+#1.Set turbulence threshold(设置抗风险阈值)
 data_turbulence = processed_full[(processed_full.date<'2020-07-01') & (processed_full.date>='2017-01-01')]
 insample_turbulence = data_turbulence.drop_duplicates(subset=['date'])
 
@@ -263,6 +267,7 @@ df_account_value, df_actions = DRLAgent.DRL_prediction(
     environment = e_trade_gym)
 
 df_account_value.shape
+
 df_account_value.tail()
 df_actions.head()
 
