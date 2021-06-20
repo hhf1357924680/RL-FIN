@@ -184,8 +184,8 @@ print(f"Stock Dimension: {stock_dimension}, State Space: {state_space}")
 env_kwargs = {
     "hmax": 100, 
     "initial_amount": 1000000, #Since in Indonesia the minimum number of shares per trx is 100, then we scaled the initial amount by dividing it with 100 
-    "buy_cost_pct": 0.001, #IPOT has 0.19% buy cost
-    "sell_cost_pct": 0.001, #IPOT has 0.29% sell cost
+    "buy_cost_pct": 0.001, #IPOT has 0.1% buy cost
+    "sell_cost_pct": 0.001, #IPOT has 0.1% sell cost
     "state_space": state_space, 
     "stock_dim": stock_dimension, 
     "tech_indicator_list": tech_indicators, 
@@ -246,3 +246,31 @@ df_summary = ensemble_agent.run_ensemble_strategy(A2C_model_kwargs,
                                                  PPO_model_kwargs,
                                                  DDPG_model_kwargs,
                                                  timesteps_dict)
+df_summary
+#r(s_t,a_t,s_(t+1) = (b_(t+1)+p_(t+1)*(h_(t+1)))-((b_t)+p_t*h_t)-ct
+#1.未使用model的累计收益
+#2.使用A2C得到的累计收益：A2C_model_kwargs
+#3.使用ppo得到的累计收益：PPO_model_kwargs
+#4.使用DDPG得到的累计收益：DDPG_model_kwargs
+#5.使用 集成策略 得到的累计收益：df_summary
+
+
+#Backtest of Ensemble Strategy
+unique_trade_date = processed_full[(processed_full.date > 
+val_test_start)&(processed_full.date <=
+ val_test_end)].date.unique()#使用划分好的验证集作为trade数据
+
+df_trade_date = pd.DataFrame({'datadate':unique_trade_date})#建立一个新的表，列名是datadate：内容是trade_date
+
+df_account_value=pd.DataFrame()
+for i in range(rebalance_window+validation_window, len(unique_trade_date)+1,rebalance_window):
+    temp = pd.read_csv('results/account_value_trade_{}_{}.csv'.format('ensemble',i))
+    df_account_value = df_account_value.append(temp,ignore_index=True)
+sharpe=(252**0.5)*df_account_value.account_value.pct_change(1).mean()/df_account_value.account_value.pct_change(1).std()
+print('Sharpe Ratio: ',sharpe)
+df_account_value=df_account_value.join(df_trade_date[validation_window:].reset_index(drop=True))
+
+df_account_value.head()
+
+%matplotlib inline
+df_account_value.account_value.plot()

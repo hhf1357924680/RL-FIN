@@ -300,3 +300,10 @@ backtest_plot(df_account_value,
              baseline_ticker = '^DJI', 
              baseline_start = '2020-07-01',
              baseline_end = '2021-01-01')
+
+#缓存数据
+SAVE_PATH = "./datasets/result.csv"
+if os.path.exists(SAVE_PATH):
+    df_account_value = pd.read_csv(SAVE_PATH);
+else:
+    df_account_value.to_csv(SAVE_PATH)
