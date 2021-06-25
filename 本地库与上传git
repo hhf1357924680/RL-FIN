@@ -1,0 +1,13 @@
+如何将本地库上传github
+
+1).在github新建库，并得到自己的库的HTTPS
+2).将原来的GitHub上面的代码库从VS中移除，在本地terminal的bash输入命令：git remote remove origin
+3).（bash）查看远程地址：git remote -v
+            得到结果为空，让你继续输命令
+4).增加自己在GitHub上面建立的库为与本地连接的库(bash命令)：git remote add origin HTTPS（自己新建的） 
+            举例：git remote add origin https://github.com/hhf1357924680/RL-FIN.git
+            本例中：我在GitHub上对应此本次库建立的库名称为：https://github.com/hhf1357924680/RL-FIN.git
+5).确认已经建立联系，bash输入命令查看远程地址：git remote -v
+            得到结果：origin  https://github.com/hhf1357924680/RL-FIN.git (fetch)
+                     origin  https://github.com/hhf1357924680/RL-FIN.git (push)
+    Bingo！（congratulation！）

@@ -287,7 +287,7 @@ class DRLEnsembleAgent:
             # Tuning trubulence index based on historical data
             # Turbulence lookback window is one quarter (63 days)
             end_date_index = self.df.index[self.df["date"] == self.unique_trade_date[i - self.rebalance_window - self.validation_window]].to_list()[-1]
-            start_date_index = end_date_index - 63 + 1
+            start_date_index = end_date_index - self.rebalance_window + 1
 
             historical_turbulence = self.df.iloc[start_date_index:(end_date_index + 1), :]
 
@@ -458,7 +458,7 @@ class DRLEnsembleAgent:
         df_summary = pd.DataFrame([iteration_list,validation_start_date_list,validation_end_date_list,model_use,a2c_sharpe_list,ppo_sharpe_list,ddpg_sharpe_list]).T
         df_summary.columns = ['Iter','Val Start','Val End','Model Used','A2C Sharpe','PPO Sharpe','DDPG Sharpe']
 
-        return df_summary
+        return df_summary,model_ppo,model_a2c,model_ddpg
 
 
 
