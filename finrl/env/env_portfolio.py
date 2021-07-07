@@ -72,8 +72,8 @@ class StockPortfolioEnv(gym.Env):
         state_space,
         action_space,
         tech_indicator_list,
-        turbulence_threshold=None,
-        lookback=252,
+        turbulence_threshold=None,#股市崩盘的风险阈值
+        lookback=252,#每年股票交易250天左右
         day=0,
     ):
         # super(StockEnv, self).__init__()

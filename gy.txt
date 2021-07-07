@@ -1,5 +1,6 @@
 启动虚拟环境，切换到此目录之后：
 source venv/bin/activate
+从雅虎下载数据缓存
 python ./main.py --mode=download_data
 
 source /mnt/work/project/FinRL-Library/venv/bin/activate
