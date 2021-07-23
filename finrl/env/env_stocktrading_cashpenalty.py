@@ -272,7 +272,7 @@ class StockTradingEnvCashpenalty(gym.Env):
         if self.discrete_actions:
             # convert into integer because we can't buy fraction of shares
             actions = actions // self.closings
-            actions = actions.astype(int)
+            actions = actions.astype(int)#将action变成整数型
             # round down actions to the nearest multiplies of shares_increment
             actions = np.where(
                 actions >= 0,

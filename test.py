@@ -1,3 +1,1 @@
-import numpy as np
-
-import matplotlib.pyplot as plt
+from stockstats import StockDataFrame as Sdf
