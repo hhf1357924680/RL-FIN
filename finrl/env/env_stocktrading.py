@@ -299,7 +299,7 @@ class StockTradingEnv(gym.Env):
                          sum([self.data[tech].values.tolist() for tech in self.tech_indicator_list ], [])
             else:
                 # for single stock
-                 = [self.initial_amount] + \
+                state = [self.initial_amount] + \
                         [self.data.close] + \
                         [0]*self.stock_dim  + \
                         sum([[self.data[tech]] for tech in self.tech_indicator_list ], [])
