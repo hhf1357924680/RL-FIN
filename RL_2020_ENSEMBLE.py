@@ -134,7 +134,13 @@ fe = FeatureEngineer(
 )
 ##使用finrl.preprocessing.preprocessors中的FeatureEngineer来对股价数据进行预处理
 
-processed = fe.preprocess_data(df)
+# 缓存数据，如果日期或者股票列表发生变化，需要删除该缓存文件重新下载
+SAVE_PATH = "./datasets/20210616-12h19.preprocess.csv"
+if os.path.exists(SAVE_PATH):
+    processed = pd.read_csv(SAVE_PATH)
+else:
+    processed = fe.preprocess_data(df)
+    processed.to_csv(SAVE_PATH)
 
 list_ticker = processed["tic"].unique().tolist()  # 按照processed的"tic"列去重
 list_date = list(
@@ -293,7 +299,7 @@ def stat_result():
     return dfs
 
 
-dfs = stat_result()
+dfs = stat_result() 
 # 将所有数据画到同一个图中
 for i in [1,2,3]:
     x = dfs[i]["date"]
