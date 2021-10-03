@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from copy import deepcopy
 
+import sys,os
+sys.path.append(os.path.dirname(os.path.realpath(".")))
+
 from finrl.marketdata.yahoodownloader import YahooDownloader
 from finrl.config import config
 
@@ -54,6 +57,7 @@ def backtest_plot(
     baseline_df = get_baseline(
         ticker=baseline_ticker, start=baseline_start, end=baseline_end
     )
+    
 
     baseline_returns = get_daily_return(baseline_df, value_col_name="close")
     with pyfolio.plotting.plotting_context(font_scale=1.1):
