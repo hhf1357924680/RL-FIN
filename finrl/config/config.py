@@ -32,7 +32,7 @@ RESULTS_DIR = f"results"
 
 ## time_fmt = '%Y-%m-%d'
 START_DATE = "2000-01-01"
-END_DATE = "2021-01-01"  # 预计后面改成2021-06-20（今日日期）
+END_DATE = "2021-09-18"  # 预计后面改成2021-06-20（今日日期）
 
 START_TRADE_DATE = "2019-01-01"
 
@@ -104,7 +104,9 @@ SRI_KEHATI_TICKER = [
     "WSKT.JK",
     "WTON.JK",
 ]
+nas_choosen = ['ADBE', 'ADI', 'ADP', 'ADSK', 'AMZN', 'ATVI', 'CDNS', 'CMCSA', 'CSCO', 'CSX', 'CTAS', 'CTXS', 'EXPE', 'GOOGL', 'INTU', 'JBHT', 'KLAC', 'LBTYK', 'LRCX', 'MAR', 'MNST', 'MSFT', 'ORLY', 'PEP', 'SBUX', 'SIRI', 'TMUS', 'VRSN', 'WDC', 'XEL']
 
+sp_choosen = ['ANSS', 'APD', 'BAC', 'BR', 'CDNS', 'CF', 'CI', 'CMI', 'COG', 'CTSH', 'DISCK', 'DVN', 'ETR', 'FAST', 'FE', 'HPQ', 'HST', 'ICE', 'INCY', 'MCK', 'MHK', 'MLM', 'MO', 'MRK', 'NDAQ', 'OKE', 'PLD', 'TROW', 'XOM', 'ZBH']
 # check https://wrds-www.wharton.upenn.edu/ for U.S. index constituents
 # Dow 30 constituents at 2019/01
 DOW_30_TICKER = [
