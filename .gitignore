@@ -1,7 +1,6 @@
 # Custom config
 #results/
 
-
 # remove DS_Store
 **/.DS_Store
 
@@ -142,3 +141,6 @@ dmypy.json
 *.csv
 *.zip
 *.png
+finrl_test.py
+test_plugplay.py
+papertrading_test.py

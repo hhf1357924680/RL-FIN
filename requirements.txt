@@ -1,10 +1,10 @@
 # data handling
-numpy
+numpy>=1.17.3
 pandas>=1.1.5
 stockstats
 yfinance
+elegantrl
 #pyfolio
-
 # plot
 matplotlib
 
@@ -12,6 +12,18 @@ matplotlib
 scikit-learn>=0.21.0
 gym>=0.17
 stable-baselines3[extra]
+ray[default]
+ray[tune]
+lz4
+tensorboardX
+gputil
+
+# market data & paper trading API
+trading_calendars
+alpaca_trade_api
+ccxt
+jqdatasdk
+wrds
 
 # testing requirements
 pytest
@@ -19,3 +31,6 @@ pytest
 # packaging
 setuptools>=41.4.0
 wheel>=0.33.6
+
+#hooks
+pre-commit
