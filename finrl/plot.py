@@ -4,7 +4,7 @@ import sys,os
 sys.path.append(os.path.dirname(os.path.realpath(".")))
 #from finrl.marketdata.yahoodownloader import YahooDownloader
 
-from finrl.config import config
+#from finrl.config import config
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
@@ -52,6 +52,7 @@ def backtest_plot(
     baseline_start=config.START_TRADE_DATE,
     baseline_end=config.END_DATE,
     baseline_ticker="^DJI",
+    baseline_df=None,
     value_col_name="account_value",
 ):
 
@@ -59,9 +60,10 @@ def backtest_plot(
     df["date"] = pd.to_datetime(df["date"])
     test_returns = get_daily_return(df, value_col_name=value_col_name)
 
-    baseline_df = get_baseline(
-        ticker=baseline_ticker, start=baseline_start, end=baseline_end
-    )
+    if baseline_df is None:
+        baseline_df = get_baseline(
+            ticker=baseline_ticker, start=baseline_start, end=baseline_end
+        )
     
 
     baseline_df["date"] = pd.to_datetime(baseline_df["date"], format="%Y-%m-%d")
