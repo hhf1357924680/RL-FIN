@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "../gymenv/bin/python",
-    "python.defaultInterpreterPath": "../gymenv/bin/python",
+    "python.pythonPath": "/home/wanyao/anaconda3/envs/py372/bin/python",
+    "python.defaultInterpreterPath": "/home/wanyao/anaconda3/envs/py372/bin/python",
 }

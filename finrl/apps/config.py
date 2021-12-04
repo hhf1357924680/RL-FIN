@@ -20,19 +20,23 @@ RESULTS_DIR = "results"
 ## time_fmt = '%Y-%m-%d'
 
 START_DATE = "2000-01-01"
-END_DATE = "2021-09-18"  # 预计后面改成2021-06-20（今日日期）
+END_DATE = "2020-07-02"  # 预计后面改成2021-06-20（今日日期）
 
-#START_DATE = "2009-01-01"
-#END_DATE = "2021-10-31"
+"""
+train_start = "2009-01-01"
+train_end = "2015-10-01"
+val_test_start = "2015-10-01"
+val_test_end = "2020-10-02"
+"""
 
-TRAIN_START_DATE = "2014-01-01"
-TRAIN_END_DATE = "2020-07-31"
+TRAIN_START_DATE = "2009-01-01"
+TRAIN_END_DATE = "2015-10-01"
 
-TEST_START_DATE = "2020-08-01"
-TEST_END_DATE = "2021-10-01"
+TEST_START_DATE = "2015-10-01"
+TEST_END_DATE = "2020-10-02"
 
 
-START_TRADE_DATE = "2019-01-01"
+START_TRADE_DATE = "2016-01-04"
 
 ## dataset default columns
 DEFAULT_DATA_COLUMNS = ["date", "tic", "close"]
